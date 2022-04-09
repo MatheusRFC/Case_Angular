@@ -15,14 +15,14 @@
             <br>
         <label>
           <p class="label-txt">DIGITE SEU USUÁRIO</p>
-          <input type="text" class="input">
+          <input type="text" class="input" id = "nome_usuario" #nome_usuario>
           <div class="line-box">
             <div class="line"></div>
           </div>
         </label>
         <label>
           <p class="label-txt">DIGITE SUA SENHA</p>
-          <input type="password" class="input">
+          <input type="password" class="input" id = "senha" #senha>
           
           <div class="line-box">
             <div class="line"></div>
@@ -30,12 +30,12 @@
         </label>
         <label>
           <p class="label-txt">DIGITE A CONFIRMAÇÃO DA SENHA</p>
-          <input type="password" class="input">
+          <input type="password" class="input" id = "senha_confirm" #senha_confirm>
           <div class="line-box">
             <div class="line"></div>
           </div>
         </label>
-        <button type="submit">CADASTRAR</button>
+        <button type="button" (click)="coleta_Dados(nome_usuario.value, senha.value, senha_confirm.value)">CADASTRAR</button>
       </form>
 </body>
 </html>
