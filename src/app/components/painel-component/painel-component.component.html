@@ -11,10 +11,26 @@
     <div class="container register-form">
         <div class="form">
             <div class="note">
-                <img src="../../assets/logo_Elo_completo.svg" class="brand_logo" alt="Logo">
-                <p>PAINEL</p>
+                <div class="row">
+                    <div class="col-sm">
+                        <img src="../../assets/logo_Elo_completo.svg" class="brand_logo" alt="Logo">
+                    </div>
+                    <div class="col-sm">
+                        PAINEL
+                    </div>
+                    <div class="col-sm" id = "mostrar_usuario">
+                        
+                    </div>
+                </div>
             </div>
-            <button type="button" class="btnSubmit" (click)="novo_Lead()">NOVO LEAD +</button>
+            <div class="row">
+                <div class="col-lg">
+                    <button type="button" class="btn btn-primary" (click)="novo_Lead()">NOVO LEAD +</button>
+                </div>
+                <div class="col-sm">
+                    <button type="button" class="btn btn-danger" (click)="logout_Function()">LOGOUT</button>
+                </div>
+            </div>
             <div class="form-content">
                 <div class="row">
                     <div class="col-md-11">

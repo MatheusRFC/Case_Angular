@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {Router, Routes } from '@angular/router';
-import { PainelComponentComponent } from '../painel-component/painel-component.component';
-
-const routes: Routes = [
-  {path: 'painel', component: PainelComponentComponent}
-];
 
 @Component({
   selector: 'app-login-component',
@@ -38,6 +33,7 @@ export class LoginComponentComponent implements OnInit {
       alert("Usuário ou senha incorretos");
     }
     else{
+      sessionStorage.setItem('usuario_logado', nome);
       this.route.navigate(['painel']);
     }
   }
