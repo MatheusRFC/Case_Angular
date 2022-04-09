@@ -5,12 +5,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponentComponent } from './components/login-component/login-component.component';
 import { CadastroComponentComponent } from './components/cadastro-component/cadastro-component.component';
+import { PainelComponentComponent } from './components/painel-component/painel-component.component';
+import { NovoLeadComponentComponent } from './components/novo-lead-component/novo-lead-component.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponentComponent,
-    CadastroComponentComponent
+    CadastroComponentComponent,
+    PainelComponentComponent,
+    NovoLeadComponentComponent
   ],
   imports: [
     BrowserModule,

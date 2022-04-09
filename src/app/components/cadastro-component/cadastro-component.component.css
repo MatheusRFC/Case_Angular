@@ -1,5 +1,5 @@
 body {
-    background: #696968;
+    background: #b3b3b2;
   }
   form {
     width: 30%;
@@ -73,7 +73,13 @@ body {
   }
   
   button:hover {
-    background: #8BC34A;
+    background: #3f3f3e;
     color: #ffffff;
   }
   
+  .brand_logo {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    border: 2px solid white;
+  }
