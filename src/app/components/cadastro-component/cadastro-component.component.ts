@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import {Router, Routes } from '@angular/router';
+import { LoginComponentComponent } from '../login-component/login-component.component';
+
+const routes: Routes = [
+  {path: '', component: LoginComponentComponent}
+];
 
 @Component({
   selector: 'app-cadastro-component',
@@ -8,7 +14,7 @@ import { Component, OnInit } from '@angular/core';
 
 export class CadastroComponentComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route:Router) { }
 
   ngOnInit(): void {
     
@@ -16,6 +22,16 @@ export class CadastroComponentComponent implements OnInit {
 
   //Função que recebe e verifica os dados de cadastro.
   coleta_Dados(nome: string, senha: string, senha_confirm: string){
+
+    const usuario = {
+      usuario_nome: nome,
+      senha: senha,
+  }
+
+  var usuario2 = {
+    usuario_nome: nome,
+    senha: senha,
+}
 
     // Variáveis para exibição dos erros.
     var error = '';
@@ -50,8 +66,9 @@ export class CadastroComponentComponent implements OnInit {
     //Caso esteja tudo correto com as informações, exibe uma confirmação de usuário cadastrado.
     else {
       alert("Usuário cadastrado com sucesso!");
+      localStorage.setItem(nome, JSON.stringify(usuario));
+      this.route.navigate(['']);
     }
-
   }
 
 }

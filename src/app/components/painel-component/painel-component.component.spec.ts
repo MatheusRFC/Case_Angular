@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { PainelComponentComponent } from './painel-component.component';
 
 describe('PainelComponentComponent', () => {
