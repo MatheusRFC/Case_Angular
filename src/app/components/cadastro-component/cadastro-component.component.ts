@@ -15,11 +15,16 @@ export class CadastroComponentComponent implements OnInit {
     
   }
 
+  voltar_Login(){
+    this.route.navigate(['']);
+  }
+
   //Função que recebe e verifica os dados de cadastro.
   coleta_Dados(nome: string, senha: string, senha_confirm: string){
 
+    //Pega o nome de usuário do localstorage.
     var users = localStorage.getItem(nome);
-    
+
     //Verifica se o usuário já foi cadastrado pelo tipo de retorno
     if (typeof users === 'string') {
       alert("Usuário já cadastrado.")
@@ -27,7 +32,7 @@ export class CadastroComponentComponent implements OnInit {
 
     //Caso o usuário não esteja cadastrado, o script o cadastra.
     else{
-        var users = localStorage.getItem(nome);
+      var users = localStorage.getItem(nome);
       //Cria um array de objetos
       const usuario = {
         usuario_nome: nome,

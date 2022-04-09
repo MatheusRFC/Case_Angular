@@ -19,18 +19,20 @@ export class PainelComponentComponent implements OnInit {
       alert("Usuário Não logado.")
       this.route.navigate(['']);
     }
-    
+
+    // Adiciona as boas vindas ao usuário logado.
     var mostrar_usuario = document.getElementById("mostrar_usuario");
     const p = document.createElement("p");
     p.textContent = "BEM VINDO(A), "+user;
     mostrar_usuario.appendChild(p);
   }
   
-
+ // Navega até a página de adição de um novo lead.
   novo_Lead(){
     this.route.navigate(['novo_lead']);
   }
 
+  //Função de logout. Remove da sessionStorage o nome do usuário logado e retorna a tela de login.
   logout_Function(){
     sessionStorage.removeItem('usuario_logado');
     this.route.navigate(['']);

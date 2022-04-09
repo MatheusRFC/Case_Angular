@@ -1,10 +1,11 @@
 body {
-    background: #b3b3b2;
+    background: #ffffff;
   }
   form {
+    margin-top: 0%;
     width: 30%;
     margin: 60px auto;
-    background: #efefef;
+    background: #e6e3e3;
     padding: 60px 120px 80px 120px;
     text-align: center;
     -webkit-box-shadow: 2px 2px 3px rgba(0,0,0,0.1);
@@ -62,9 +63,9 @@ body {
   button {
     display: inline-block;
     padding: 12px 24px;
-    background: rgb(220,220,220);
+    background: rgb(146, 144, 144);
     font-weight: bold;
-    color: rgb(120,120,120);
+    color: rgb(241, 235, 235);
     border: none;
     outline: none;
     border-radius: 3px;
@@ -82,4 +83,8 @@ body {
     width: 150px;
     border-radius: 50%;
     border: 2px solid white;
+  }
+
+  .btn-back{
+    margin-top: 0%;
   }

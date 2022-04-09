@@ -13,6 +13,7 @@ export class NovoLeadComponentComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // Função que retorna ao menu principal quando o boetão é clicado.
   voltar_Painel(){
     this.route.navigate(['painel']);
   }
