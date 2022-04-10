@@ -69,6 +69,11 @@ export class NovoLeadComponentComponent implements OnInit {
 
   grava_Lead(nome: string, telefone: string, email: string){
 
+    const check_rpa = document.getElementById("customCheck1") as HTMLInputElement;
+    const check_produto_digital = document.getElementById("customCheck2") as HTMLInputElement;
+    const check_analytics = document.getElementById("customCheck3") as HTMLInputElement;
+    const check_bpm = document.getElementById("customCheck4") as HTMLInputElement;
+
     //Expressão regular para a validação do email.
     const regexp = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
     
@@ -76,18 +81,36 @@ export class NovoLeadComponentComponent implements OnInit {
     var error = '';
     var error_existe = false;
 
+    //Verifica se o campo nome da empresa não está vazio e se ele possui pelo menos 4 caracteres.
     if (nome == "" || nome.length < 4){
       error = error + "Nome da empresa está vazio ou tem menos de 4 caracteres.\n";
       error_existe = true;
     }
 
+    //Verifica se o campo telefone não está vazio e se ele possui pelo menos 4 caracteres.
     if (telefone == "" || telefone.length < 4){
       error = error + "Telefone da empresa está vazio ou tem menos de 4 caracteres.\n";
       error_existe = true;
     }
 
+    //Verifica se o campo de email é valido utilizando a expressão regular declarada anteriormente.
     if (regexp.test(email) == false){
       error = error + "Por favor, digite um email válido.\n";
+      error_existe = true;
+    }
+
+    //Caso todas sejam marcadas, marca novamente a checkbox de "marcar todas"
+    if (check_rpa.checked == false && check_produto_digital.checked == false && check_analytics.checked == false && check_bpm.checked == false){
+      error = error + "Por favor, selecione uma opção de oportunidade.\n";
+      error_existe = true;
+    }
+
+    //Pega o nome de usuário do localstorage.
+    var empresa = localStorage.getItem(nome);
+
+    //Verifica se a empresa já foi cadastrado pelo tipo de retorno
+    if (typeof empresa === 'string') {
+      error = error + "Empresa já cadastrada.\n";
       error_existe = true;
     }
 
@@ -96,6 +119,57 @@ export class NovoLeadComponentComponent implements OnInit {
       alert(error);
     }
 
+    else{
+
+      //Variáveis para captura de oportunidades.
+      var RPA_var = false;
+      var PD_var= false;
+      var analytics_var = false;
+      var BPM_var = false;
+
+      //Verifica quais oportunidades foram selecionadas.
+      if (check_rpa.checked == true){
+        RPA_var = true;
+      }
+      if (check_produto_digital .checked == true){
+        PD_var= true;
+      }
+      if (check_analytics.checked == true){
+        analytics_var = true;
+      }
+      if (check_bpm.checked == true){
+        BPM_var = true;
+      }
+
+      // Cria um array de objetos para gravar no armazenamento local.
+      const empresa = {
+        tipo: "empresa",
+        nome_empresa: nome,
+        telefone: telefone,
+        email: email,
+        status: "Cliente em Potencial",
+        RPA: RPA_var,
+        PD: PD_var,
+        Analytics: analytics_var,
+        BPM: BPM_var
+      }
+
+      //Grava a empresa no armazenamento local.
+      alert("Empresa adicionada com sucesso!");
+      localStorage.setItem(nome, JSON.stringify(empresa));
+      
+      var dados;
+
+      Object.keys(localStorage).forEach(function(key){
+
+        dados = localStorage.getItem(key);
+        dados = JSON.parse(dados) 
+
+        if (dados.tipo == "empresa"){
+          console.log(localStorage.getItem(key));
+        }
+     });
+    }
   }
 
   // Função que retorna ao menu principal quando o boetão é clicado.

@@ -35,6 +35,7 @@ export class CadastroComponentComponent implements OnInit {
       var users = localStorage.getItem(nome);
       //Cria um array de objetos
       const usuario = {
+        tipo: "usuario",
         usuario_nome: nome,
         senha: senha,
       }
