@@ -31,34 +31,35 @@
                 </div>
             </div>
             <div class="form-content">
-                <div class="row">
-                    <div class="col-md-11">
-                        <div class="container">
-                            <div class="row">
-                              <div class="col-12">
-                                <table class="table table-bordered">
-                                  <thead>
-                                    <tr>
-                                      <th scope="col">Cliente em Potencial</th>
-                                      <th scope="col">Dados Confirmados</th>
-                                      <th scope="col">Reunião Agendada</th>
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                    <tr>
-                                      <td>
-                                        Empresa teste
-                                      </td>
-                                      <td></td>
-                                      <td></td>
-                                    </tr>
-                                  </tbody>
-                                </table>
-                              </div>
-                            </div>
-                          </div>
-                    </div>
+              <div style="display: flex">
+
+                <div class="card m-3 p-2">
+                  <h5 class="card-title">Cliente em Potencial</h5>
+                  <div class="card-body" cdkDropList [cdkDropListData]="lista_Potencial" [cdkDropListConnectedTo]="secondList" 
+                  #firstList="cdkDropList"
+                        (cdkDropListDropped)="drop($event)">
+                      <div *ngFor="let potencial of lista_Potencial" class="pop" cdkDrag>{{potencial}}</div>
+                  </div>
                 </div>
+
+                <div class="card m-3 p-2">
+                  <h5 class="card-title">Dados Confirmados</h5>
+                  <div class="card-body" cdkDropList [cdkDropListData]="lista_confirmados" [cdkDropListConnectedTo]="thirdList" 
+                  #secondList="cdkDropList"
+                      (cdkDropListDropped)="drop($event)">
+                      <div *ngFor="let confirmado of lista_confirmados" class="pop" cdkDrag>{{confirmado}}</div>
+                  </div>
+                </div>
+
+                <div class="card m-3 p-2">
+                  <h5 class="card-title">Reunião Agendada</h5>
+                  <div class="card-body"cdkDropList [cdkDropListData]="r_agendada"
+                  #thirdList="cdkDropList"
+                    (cdkDropListDropped)="drop($event)">
+                      <div *ngFor="let r_agendada of r_agendada" class="pop" cdkDrag>{{r_agendada}}</div>
+                  </div>
+                </div>
+              </div>
             </div>
         </div>
     </div>

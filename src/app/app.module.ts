@@ -7,6 +7,7 @@ import { LoginComponentComponent } from './components/login-component/login-comp
 import { CadastroComponentComponent } from './components/cadastro-component/cadastro-component.component';
 import { PainelComponentComponent } from './components/painel-component/painel-component.component';
 import { NovoLeadComponentComponent } from './components/novo-lead-component/novo-lead-component.component';
+import {DragDropModule} from '@angular/cdk/drag-drop'
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { NovoLeadComponentComponent } from './components/novo-lead-component/nov
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]

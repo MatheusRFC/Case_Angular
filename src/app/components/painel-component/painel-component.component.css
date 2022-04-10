@@ -26,3 +26,19 @@
 .btn-danger{
 margin-left: 80%;
 }
+
+.card{
+    width: 300px;
+}
+
+.card-body{
+    width: 280px !important;
+    border:1px rgb(212, 210, 210) solid;
+    border-radius: 0.3rem;
+}
+
+.pop{
+    border:1px rgb(212, 210, 210) solid;
+    border-radius:0.3rem;
+    margin-top: 10px;
+}
