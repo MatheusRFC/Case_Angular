@@ -117,6 +117,7 @@ export class NovoLeadComponentComponent implements OnInit {
       error_existe = true;
     }
 
+    //Verifica se o campo de numero de telefone somente tem números.
     if (/^\d+$/.test(telefone) == false){
       error = error + "O campo telefone apenas aceita números.\n";
       error_existe = true;
