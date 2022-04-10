@@ -12,11 +12,10 @@ export class PainelComponentComponent implements OnInit {
   constructor(private route:Router) { }
 
   ngOnInit(): void {
-    var user = sessionStorage.getItem('usuario_logado');
-    
     //Verifica se o usuário já foi cadastrado pelo tipo de retorno
+    var user = sessionStorage.getItem('usuario_logado');
     if (typeof user != 'string') {
-      alert("Usuário Não logado.")
+      alert("Usuário Não logado.");
       this.route.navigate(['']);
     }
 
