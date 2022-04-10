@@ -18,21 +18,21 @@ npm i @angular/cdk --save
 
 Desenvolver uma aplicação para a manutenção de Leads, Essa aplicação implementa a camada de front end para a seguinte arquitetura:
 
-![arquitetura.png](https://github.com/MatheusRFC/Teste/blob/master/.img/arquitetura.png)
+![arquitetura.png](https://github.com/MatheusRFC/Case_Angular/blob/master/.img/arquitetura.png)
 
 ### Login
 
 A tela de login é responsável por pegar os dados armazenados no localstorage do navegador e utilizá-los
 para efetuar a autenticação do usuário
 
-![login.png](https://github.com/MatheusRFC/Teste/blob/master/.img/login.png) 
+![login.png](https://github.com/MatheusRFC/Case_Angular/blob/master/.img/login.png) 
 
 ### Cadastro de Usuários
 
 A página de cadastro de usuários é responsável por fazer o cadastro dos usuários e armazenar o dados
 no localstorage do navegador para ser possível o login utilizar esses dados para autênticação posterirmente.
 
-![cadastro_usuarios](https://github.com/MatheusRFC/Teste/blob/master/.img/cadastro_usuarios.png) 
+![cadastro_usuarios](https://github.com/MatheusRFC/Case_Angular/blob/master/.img/cadastro_usuarios.png) 
 
 O cadastro tem os seguintes requisitos:
 
@@ -50,7 +50,7 @@ e um caracter alfanumérico.
 O painel principal do site é onde é exibido todas as empresas cadastradas, o usuário logado, opção de cadastro
 de leads e opção de logout.
 
-![painel_principal.png](https://github.com/MatheusRFC/Teste/blob/master/.img/painel_principal.png)
+![painel_principal.png](https://github.com/MatheusRFC/Case_Angular/blob/master/.img/painel_principal.png)
 
 O painel principal também tem requisitos:
 
@@ -74,7 +74,7 @@ A função de DragAndDrop foi implementada usando os módulos CdkDragDrop e tran
 O painel de cadastro de leads pode ser visto na imagem abaixo. Nele é possível fazer o cadastro de novos
 leads, informando nome, telefone, email, e as oportunidades.
 
-![cadastro_leads.png](https://github.com/MatheusRFC/Teste/blob/master/.img/cadastro_leads.png)
+![cadastro_leads.png](https://github.com/MatheusRFC/Case_Angular/blob/master/.img/cadastro_leads.png)
 
 O painel de cadastro de novos leads tem alguns requisitos que foram seguidos:
 
