@@ -160,18 +160,7 @@ export class NovoLeadComponentComponent implements OnInit {
       //Grava a empresa no armazenamento local.
       alert("Empresa adicionada com sucesso!");
       localStorage.setItem(nome, JSON.stringify(empresa));
-      
-      var dados;
-
-      Object.keys(localStorage).forEach(function(key){
-
-        dados = localStorage.getItem(key);
-        dados = JSON.parse(dados) 
-
-        if (dados.tipo == "empresa"){
-          console.log(localStorage.getItem(key));
-        }
-     });
+      this.route.navigate(['painel']);
     }
   }
 
