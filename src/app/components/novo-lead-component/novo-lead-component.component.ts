@@ -17,7 +17,7 @@ export class NovoLeadComponentComponent implements OnInit {
         //Verifica se o usuário já foi cadastrado pelo tipo de retorno
         var user = sessionStorage.getItem('usuario_logado');
         if (typeof user != 'string') {
-          alert("Usuário Não logado.")
+          alert("Usuário Não logado.");
           this.route.navigate(['']);
         }
   }
@@ -114,6 +114,11 @@ export class NovoLeadComponentComponent implements OnInit {
     //Verifica se a empresa já foi cadastrado pelo tipo de retorno
     if (typeof empresa === 'string') {
       error = error + "Empresa já cadastrada.\n";
+      error_existe = true;
+    }
+
+    if (/^\d+$/.test(telefone) == false){
+      error = error + "O campo telefone apenas aceita números.\n";
       error_existe = true;
     }
 
