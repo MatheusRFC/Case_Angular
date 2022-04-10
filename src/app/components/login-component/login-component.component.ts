@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Router, Routes } from '@angular/router';
+import {Router} from '@angular/router';
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-login-component',
@@ -8,7 +9,9 @@ import {Router, Routes } from '@angular/router';
 })
 export class LoginComponentComponent implements OnInit {
 
-  constructor(private route:Router) { }
+  constructor(private route:Router, private titleService:Title) { 
+    this.titleService.setTitle("Login");
+  }
 
   ngOnInit(): void {
   }

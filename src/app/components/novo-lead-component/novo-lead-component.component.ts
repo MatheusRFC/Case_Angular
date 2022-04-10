@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-novo-lead-component',
@@ -8,7 +9,9 @@ import {Router} from '@angular/router';
 })
 export class NovoLeadComponentComponent implements OnInit {
 
-  constructor(private route:Router) { }
+  constructor(private route:Router, private titleService:Title) { 
+    this.titleService.setTitle("Cadastro de Leads");
+  }
 
   ngOnInit(): void {
         //Verifica se o usuário já foi cadastrado pelo tipo de retorno

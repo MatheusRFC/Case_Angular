@@ -1,7 +1,8 @@
 import { NullVisitor } from '@angular/compiler/src/render3/r3_ast';
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, transferArrayItem } from '@angular/cdk/drag-drop';
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-painel-component',
@@ -10,7 +11,9 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 })
 export class PainelComponentComponent implements OnInit {
 
-  constructor(private route:Router) { }
+  constructor(private route:Router, private titleService:Title) { 
+    this.titleService.setTitle("Painel Principal");
+  }
 
   // Lista para armazenamento dos dados provenientes do localstorage.
   lista_Potencial = [];

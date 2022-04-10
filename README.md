@@ -1,27 +1,97 @@
-# Case
+# Case Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.2.
+Esse projeto foi desenvolvido usando [Angular](https://github.com/angular/angular-cli) versão 13.3.2.
 
-## Development server
+## Servidor
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Rode `ng serve` para rodar o servidor de desenvolvimento. Navegue para `http://localhost:4200/`.
 
-## Code scaffolding
+## Dependências
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+É necessário instalar o angular CDK para o correto funcionamento do Drag and Drop
 
-## Build
+```
+npm i @angular/cdk --save
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Objetivo
 
-## Running unit tests
+Desenvolver uma aplicação para a manutenção de Leads, Essa aplicação implementa a camada de front end para a seguinte arquitetura:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+![arquitetura.png](https://github.com/MatheusRFC/Teste/blob/master/.img/arquitetura.png)
 
-## Running end-to-end tests
+### Login
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+A tela de login é responsável por pegar os dados armazenados no localstorage do navegador e utilizá-los
+para efetuar a autenticação do usuário
 
-## Further help
+![login.png](https://github.com/MatheusRFC/Teste/blob/master/.img/login.png) 
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Cadastro de Usuários
+
+A página de cadastro de usuários é responsável por fazer o cadastro dos usuários e armazenar o dados
+no localstorage do navegador para ser possível o login utilizar esses dados para autênticação posterirmente.
+
+![cadastro_usuarios](https://github.com/MatheusRFC/Teste/blob/master/.img/cadastro_usuarios.png) 
+
+O cadastro tem os seguintes requisitos:
+
+- Todos os campos são obrigatórios.
+
+- A senha tem que possuir ao menos 8 caracteres, contendo ao menos, um caracter especial, um caractere numérico
+e um caracter alfanumérico.
+
+- A senha e a confirmação de senha devem ser iguais.
+
+- O nome de usuário deve possuir ao menos 4 caracteres.
+
+### Painel Principal
+
+O painel principal do site é onde é exibido todas as empresas cadastradas, o usuário logado, opção de cadastro
+de leads e opção de logout.
+
+![painel_principal.png](https://github.com/MatheusRFC/Teste/blob/master/.img/painel_principal.png)
+
+O painel principal também tem requisitos:
+
+- Os Leads são exibidos pelos status:
+    - Cliente em Potencial
+    - Dados Confirmados
+    - Reunião Agendada
+
+- Cada Lead pode ser “arrastado” (tendo assim seu status interno alterado) na seguinte sequencia:
+     - Cliente em Potencial -> Dados Confirmados 
+     - Dados Confirmados -> Reunião Agendada
+
+- Não podem ser “arrastados” na sequencia inversa, nem tampouco de Cliente em Potencial diretamente para Reunião Agendada.
+
+- Para que um Lead seja incluído no “pipe”, é utilizada a opção “Novo Lead(+)”.
+
+A função de DragAndDrop foi implementada usando os módulos CdkDragDrop e transferArrayItem do angular CDK.
+
+### Cadastro de novos Leads
+
+O painel de cadastro de leads pode ser visto na imagem abaixo. Nele é possível fazer o cadastro de novos
+leads, informando nome, telefone, email, e as oportunidades.
+
+![cadastro_leads.png](https://github.com/MatheusRFC/Teste/blob/master/.img/cadastro_leads.png)
+
+O painel de cadastro de novos leads tem alguns requisitos que foram seguidos:
+
+- Todos os campos são obrigatórios.
+
+- As oportunidades podem ser marcadas / desmarcadas individualmente.
+
+- Ao clicar no CheckBox no cabeçalho da coluna esquerda na grade de oportunidades, este deverá Marcar ou Desmarcar todos.
+
+- Ao clicar no Salvar é exibida a confirmação de Lead incluído com sucesso.
+
+- O Lead deverá é incluído com o Status “Cliente em Potencial”.
+
+## Funções extras que foram adicionadas.
+
+- Verificação de autenticação.
+    - Foi adicionada uma verificação de autenticação à todas as páginas (Com exceção do login e cadastro), não permitindo o usuário deslogado de ver ou cadastrar informações.
+
+- Verificação e validação do endereço de e-mail 
+    - É feita uma verificação e validação do endereço de e-mail informado durante o cadastro de um lead. Essa verificação, assim como a verificação dos requisitos da senha, é feita utilizando uma expressão regular.
