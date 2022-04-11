@@ -22,18 +22,13 @@
 .form-control{
     border-radius:1.5rem;
 }
-.btnSubmit
-{
-    border:none;
-    border-radius:1.5rem;
-    padding: 1%;
-    width: 20%;
-    cursor: pointer;
-    background: #0062cc;
-    color: #fff;
-}
 
 .btn-primary{
     background-color: #1822DC;
     margin-bottom: 10px;
+}
+
+.campo_erros {
+	font-size: 9pt;
+	color: rgb(247, 7, 7);
 }

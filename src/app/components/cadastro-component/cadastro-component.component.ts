@@ -67,7 +67,7 @@ export class CadastroComponentComponent implements OnInit {
       // Verifica se o campo nome não está vazio e se ele possui pelo menos 4 caracteres.
       // Caso existam erros, os mesmos são adicionados a div de erros.
       if (nome == "" || nome.length < 4){
-        error = error + "• Nome de usuário está vazio ou tem menos de 4 caracteres.";
+        error = "• Nome de usuário está vazio ou tem menos de 4 caracteres.";
         p.textContent = error;
         mostrar_erros_usuario.appendChild(p);
       }
@@ -95,7 +95,7 @@ export class CadastroComponentComponent implements OnInit {
       //Caso esteja tudo correto com as informações, exibe uma confirmação de usuário cadastrado.
       else {
 
-            /*
+          /*
           Apaga o conteúdo da <div> responsável pelos erros.
           Essa parte é necessária para remover os erros e informar que o usuário 
           foi cadastrado com sucesso.

@@ -72,6 +72,18 @@ export class NovoLeadComponentComponent implements OnInit {
 
   grava_Lead(nome: string, telefone: string, email: string){
 
+        /*
+    Apaga o conteúdo da <div> responsável pelos erros.
+    Essa parte é necessária para evitar acúmulo de erros na tela
+    mesmo com os erros corrigidos.
+    */
+    document.getElementById("campo_mensagens").innerHTML = "";
+    document.getElementById("campo_mensagens").innerHTML = "<div class = 'campo_erros' id = 'campo_erros' style = 'font-size: 9pt;color: rgba(255, 0, 0, 0.603);'></div>";
+
+    //Cria a variavel para referencia ao campo de erros.
+    var mostrar_erros_usuario = document.getElementById("campo_erros");
+
+    //Declaração das constantes das checkboxes.
     const check_rpa = document.getElementById("customCheck1") as HTMLInputElement;
     const check_produto_digital = document.getElementById("customCheck2") as HTMLInputElement;
     const check_analytics = document.getElementById("customCheck3") as HTMLInputElement;
@@ -82,30 +94,39 @@ export class NovoLeadComponentComponent implements OnInit {
     
     // Variáveis para exibição dos erros.
     var error = '';
-    var error_existe = false;
 
     //Verifica se o campo nome da empresa não está vazio e se ele possui pelo menos 4 caracteres.
     if (nome == "" || nome.length < 4){
-      error = error + "Nome da empresa está vazio ou tem menos de 4 caracteres.\n";
-      error_existe = true;
+      error = "• Nome da empresa está vazio ou tem menos de 4 caracteres.\n";
+      var p = document.createElement("p");
+      p.textContent = error;
+      mostrar_erros_usuario.appendChild(p);
     }
 
     //Verifica se o campo telefone não está vazio e se ele possui pelo menos 4 caracteres.
     if (telefone == "" || telefone.length < 4){
-      error = error + "Telefone da empresa está vazio ou tem menos de 4 caracteres.\n";
-      error_existe = true;
+      error = "• Telefone da empresa está vazio ou tem menos de 4 caracteres.\n";
+      var a = document.createElement("p");
+      a.textContent = error;
+      mostrar_erros_usuario.appendChild(a);
     }
 
     //Verifica se o campo de email é valido utilizando a expressão regular declarada anteriormente.
     if (regexp.test(email) == false){
-      error = error + "Por favor, digite um email válido.\n";
-      error_existe = true;
+      error = "• Por favor, digite um email válido.\n";
+
+      var b = document.createElement("p");
+      b.textContent = error;
+      mostrar_erros_usuario.appendChild(b);
     }
 
     //Caso todas sejam marcadas, marca novamente a checkbox de "marcar todas"
     if (check_rpa.checked == false && check_produto_digital.checked == false && check_analytics.checked == false && check_bpm.checked == false){
-      error = error + "Por favor, selecione uma opção de oportunidade.\n";
-      error_existe = true;
+      error = "• Por favor, selecione uma opção de oportunidade.\n";
+
+      var c = document.createElement("p");
+      c.textContent = error;
+      mostrar_erros_usuario.appendChild(c);
     }
 
     //Pega o nome de usuário do localstorage.
@@ -113,22 +134,25 @@ export class NovoLeadComponentComponent implements OnInit {
 
     //Verifica se a empresa já foi cadastrado pelo tipo de retorno
     if (typeof empresa === 'string') {
-      error = error + "Empresa já cadastrada.\n";
-      error_existe = true;
+      error = "• Empresa já cadastrada.\n";
     }
 
     //Verifica se o campo de numero de telefone somente tem números.
     if (/^\d+$/.test(telefone) == false){
-      error = error + "O campo telefone apenas aceita números.\n";
-      error_existe = true;
-    }
-
-    //Caso exista um ou mais erros, imprime na tela através de um alert.
-    if (error_existe == true){
-      alert(error);
+      error = "• O campo telefone apenas aceita números.\n";
     }
 
     else{
+
+      /*
+          Apaga o conteúdo da <div> responsável pelos erros.
+          Essa parte é necessária para remover os erros e informar que o usuário 
+          foi cadastrado com sucesso.
+          */
+          document.getElementById("campo_mensagens").innerHTML = "";
+
+          //Cria uma div para mostrar que o usuário obteve sucesso no seu cadastro.
+          document.getElementById("campo_mensagens").innerHTML = "<div class = 'campo_sucesso' id = 'campo_cadastro_sucesso' style = 'font-size: 12pt; color: rgba(18, 129, 27, 0.753);'></div>";
 
       //Variáveis para captura de oportunidades.
       var RPA_var = false;
@@ -166,7 +190,17 @@ export class NovoLeadComponentComponent implements OnInit {
       //Grava a empresa no armazenamento local.
       alert("Empresa adicionada com sucesso!");
       localStorage.setItem(nome, JSON.stringify(empresa));
-      this.route.navigate(['painel']);
+
+      //Adiciona a mensagem de sucesso ao campo de "login_sucesso".
+      var mostrar_sucesso_cadastro = document.getElementById("campo_cadastro_sucesso");
+      var sucesso = document.createElement("p");
+      sucesso.textContent = "• Empresa cadastrada com sucesso, redirecionando para o painel principal.";
+      mostrar_sucesso_cadastro.appendChild(sucesso);
+
+      setTimeout(() => 
+      {
+        this.route.navigate(['painel']);
+      },3000);
     }
   }
 
