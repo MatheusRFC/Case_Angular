@@ -93,3 +93,7 @@ body {
     font-size: 9pt;
     color: rgba(255, 0, 0, 0.603);
   }
+
+  .campo_sucesso{
+    font-size: 9pt; color: rgba(18, 129, 27, 0.753);
+  }

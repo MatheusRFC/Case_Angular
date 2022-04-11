@@ -21,6 +21,7 @@ export class CadastroComponentComponent implements OnInit {
   voltar_Login(){
     this.route.navigate(['']);
   }
+  
 
   //Função que recebe e verifica os dados de cadastro.
   coleta_Dados(nome: string, senha: string, senha_confirm: string){
@@ -30,7 +31,7 @@ export class CadastroComponentComponent implements OnInit {
     Essa parte é necessária para evitar acúmulo de erros na tela
     mesmo com os erros corrigidos.
     */
-    document.getElementById("campo_erros").innerHTML = "";
+    document.getElementById("campo_mensagens").innerHTML = "";
 
     //Pega o nome de usuário do localstorage.
     var users = localStorage.getItem(nome);
@@ -44,7 +45,8 @@ export class CadastroComponentComponent implements OnInit {
     else{
 
       // Perga a div "campo_erros" para adicionar os erros caso existam.
-      var mostrar_usuario = document.getElementById("campo_erros");
+      document.getElementById("campo_mensagens").innerHTML = "<div class = 'campo_erros' id = 'campo_erros' style = 'font-size: 9pt;color: rgba(255, 0, 0, 0.603);'></div>";
+      var mostrar_erros_usuario = document.getElementById("campo_erros");
       var p = document.createElement("p");
 
       var users = localStorage.getItem(nome);
@@ -62,36 +64,58 @@ export class CadastroComponentComponent implements OnInit {
       //Expressão regular responsável por definir os parametros da senha.
       let regexp = new RegExp("^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*[@#$%^&+=*>!<_`-]).*$");
 
-      //Verifica se o campo nome não está vazio e se ele possui pelo menos 4 caracteres.
+      // Verifica se o campo nome não está vazio e se ele possui pelo menos 4 caracteres.
+      // Caso existam erros, os mesmos são adicionados a div de erros.
       if (nome == "" || nome.length < 4){
         error = error + "• Nome de usuário está vazio ou tem menos de 4 caracteres.";
         p.textContent = error;
-        mostrar_usuario.appendChild(p);
+        mostrar_erros_usuario.appendChild(p);
       }
 
-      //Verifica se o campo de senha não esta vazio e se é igual a confirmação
+      // Verifica se o campo de senha não esta vazio e se é igual a confirmação.
+      // Caso existam erros, os mesmos são adicionados a div de erros.
       if (senha != senha_confirm || senha == "" || senha_confirm == ""){
         error = "• As senhas tem que ser iguais e não podem ser vazias.";
 
         var b = document.createElement("p");
         b.textContent = error;
-        mostrar_usuario.appendChild(b);
+        mostrar_erros_usuario.appendChild(b);
       } 
 
-      //Verifica se a senha atente aos requisitos mínimos dispostos na expressão regular.
+      // Verifica se a senha atente aos requisitos mínimos dispostos na expressão regular.
+      // Caso existam erros, os mesmos são adicionados a div de erros.
       if (regexp.test(senha) == false){
         error = "• As senhas devem conter pelo menos 8 caracteres, uma letra, um número e um caractere especial.";
 
         var c = document.createElement("p");
         c.textContent = error;
-        mostrar_usuario.appendChild(c);
+        mostrar_erros_usuario.appendChild(c);
       }
 
       //Caso esteja tudo correto com as informações, exibe uma confirmação de usuário cadastrado.
       else {
-          alert("Usuário cadastrado com sucesso!");
+
+            /*
+          Apaga o conteúdo da <div> responsável pelos erros.
+          Essa parte é necessária para remover os erros e informar que o usuário 
+          foi cadastrado com sucesso.
+          */
+          document.getElementById("campo_mensagens").innerHTML = "";
+
+          //Cria uma div para mostrar que o usuário obteve sucesso no seu cadastro.
+          document.getElementById("campo_mensagens").innerHTML = "<div class = 'campo_sucesso' id = 'campo_login_sucesso' style = 'font-size: 9pt; color: rgba(18, 129, 27, 0.753);'></div>";
+
+          //Adiciona a mensagem de sucesso ao campo de "login_sucesso".
+          var mostrar_sucesso_cadastro = document.getElementById("campo_login_sucesso");
+          var sucesso = document.createElement("p");
+          sucesso.textContent = "• Usuário cadastrado com sucesso, redirecionando para o login.";
+          mostrar_sucesso_cadastro.appendChild(sucesso);
+
           localStorage.setItem(nome, JSON.stringify(usuario));
-          this.route.navigate(['']);
+          setTimeout(() => 
+          {
+            this.route.navigate(['']);
+          },4000);
       }
     }
   }
