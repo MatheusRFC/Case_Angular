@@ -33,21 +33,24 @@ export class CadastroComponentComponent implements OnInit {
     */
     document.getElementById("campo_mensagens").innerHTML = "";
 
+    // Perga a div "campo_erros" para adicionar os erros caso existam.
+    document.getElementById("campo_mensagens").innerHTML = "<div class = 'campo_erros' id = 'campo_erros' style = 'font-size: 9pt;color: rgba(255, 0, 0, 0.603);'></div>";
+    var mostrar_erros_usuario = document.getElementById("campo_erros");
+
     //Pega o nome de usuário do localstorage.
     var users = localStorage.getItem(nome);
 
     //Verifica se o usuário já foi cadastrado pelo tipo de retorno
     if (typeof users === 'string') {
-      alert("Usuário já cadastrado.")
+
+      var a = document.createElement("p");
+      a.textContent = "• Usuário já cadastrado.";
+      mostrar_erros_usuario.appendChild(a);
+      
     }
 
     //Caso o usuário não esteja cadastrado, o script o cadastra.
     else{
-
-      // Perga a div "campo_erros" para adicionar os erros caso existam.
-      document.getElementById("campo_mensagens").innerHTML = "<div class = 'campo_erros' id = 'campo_erros' style = 'font-size: 9pt;color: rgba(255, 0, 0, 0.603);'></div>";
-      var mostrar_erros_usuario = document.getElementById("campo_erros");
-      var p = document.createElement("p");
 
       var users = localStorage.getItem(nome);
       //Cria um array de objetos
@@ -62,12 +65,14 @@ export class CadastroComponentComponent implements OnInit {
       var error_existe = false;
 
       //Expressão regular responsável por definir os parametros da senha.
-      let regexp = new RegExp("^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*[@#$%^&+=*>!<_`-]).*$");
+      let regexp = new RegExp("^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*['/;:,.)(~|}{?@#$%^&+=*>!<_`-]).*$");
 
       // Verifica se o campo nome não está vazio e se ele possui pelo menos 4 caracteres.
       // Caso existam erros, os mesmos são adicionados a div de erros.
       if (nome == "" || nome.length < 4){
         error = "• Nome de usuário está vazio ou tem menos de 4 caracteres.";
+
+        var p = document.createElement("p");
         p.textContent = error;
         mostrar_erros_usuario.appendChild(p);
       }
@@ -115,7 +120,7 @@ export class CadastroComponentComponent implements OnInit {
           setTimeout(() => 
           {
             this.route.navigate(['']);
-          },4000);
+          },3000);
       }
     }
   }
