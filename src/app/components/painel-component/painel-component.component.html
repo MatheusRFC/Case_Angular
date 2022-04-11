@@ -34,7 +34,7 @@
               <div style="display: flex">
 
                 <div class="card m-3 p-2">
-                  <h5 class="card-title">Cliente em Potencial</h5>
+                  <h5 class="card-title">Cliente em Potencial  <i class="fa-solid fa-clipboard-question"></i></h5>
                   <div class="card-body" cdkDropList [cdkDropListData]="lista_Potencial" [cdkDropListConnectedTo]="secondList" 
                   #firstList="cdkDropList"
                         (cdkDropListDropped)="drop($event)">
@@ -43,7 +43,7 @@
                 </div>
 
                 <div class="card m-3 p-2">
-                  <h5 class="card-title">Dados Confirmados</h5>
+                  <h5 class="card-title">Dados Confirmados  <i class="fa-solid fa-circle-check"></i></h5>
                   <div class="card-body" cdkDropList [cdkDropListData]="lista_confirmados" [cdkDropListConnectedTo]="thirdList" 
                   #secondList="cdkDropList"
                       (cdkDropListDropped)="drop($event)">
@@ -52,7 +52,7 @@
                 </div>
 
                 <div class="card m-3 p-2">
-                  <h5 class="card-title">Reunião Agendada</h5>
+                  <h5 class="card-title">Reunião Agendada  <i class="fa-regular fa-calendar-check"></i></h5>
                   <div class="card-body"cdkDropList [cdkDropListData]="r_agendada"
                   #thirdList="cdkDropList"
                     (cdkDropListDropped)="drop($event)">
