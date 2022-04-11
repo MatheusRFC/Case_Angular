@@ -18,6 +18,13 @@ export class LoginComponentComponent implements OnInit {
 
   coleta_Dados_login(nome: string, senha: string){
 
+    /*
+    Apaga o conteúdo da <div> responsável pelos erros.
+    Essa parte é necessária para evitar acúmulo de erros na tela
+    mesmo com os erros corrigidos.
+    */
+    document.getElementById("campo_erros").innerHTML = "";
+
     //Cria um array de objetos
     var usuario = {
       usuario_nome: nome,
@@ -26,6 +33,8 @@ export class LoginComponentComponent implements OnInit {
 
   //Pega do armazenamento local os dados que tem a chave (nome do usuário) igual ao nome informado.
   var users = localStorage.getItem(nome);
+  var mostrar_erros_usuario = document.getElementById("campo_erros");
+  var p = document.createElement("p");
 
   //Verifica se o objeto retornado não é null
   if (typeof users === 'string') {
@@ -33,7 +42,8 @@ export class LoginComponentComponent implements OnInit {
 
     //Caso a senha não corresponda, gera um erro.
     if (usuario.senha != senha){
-      alert("Usuário ou senha incorretos");
+      p.textContent = "• Usuário ou senha incorretos.";
+      mostrar_erros_usuario.appendChild(p);
     }
     else{
       sessionStorage.setItem('usuario_logado', nome);
@@ -43,7 +53,8 @@ export class LoginComponentComponent implements OnInit {
 
   //Caso o objeto retornado seja null, o usuário está incorreto.
   else {
-    alert("Usuário ou senha incorretos");
+    p.textContent = "• Usuário ou senha incorretos.";
+    mostrar_erros_usuario.appendChild(p);
   }
 
   }
