@@ -94,6 +94,7 @@ export class NovoLeadComponentComponent implements OnInit {
     
     // Variáveis para exibição dos erros.
     var error = '';
+    var erro_exite = false;
 
     //Verifica se o campo nome da empresa não está vazio e se ele possui pelo menos 4 caracteres.
     if (nome == "" || nome.length < 4){
@@ -101,6 +102,7 @@ export class NovoLeadComponentComponent implements OnInit {
       var p = document.createElement("p");
       p.textContent = error;
       mostrar_erros_usuario.appendChild(p);
+      erro_exite = true;
     }
 
     //Verifica se o campo telefone não está vazio e se ele possui pelo menos 4 caracteres.
@@ -109,6 +111,7 @@ export class NovoLeadComponentComponent implements OnInit {
       var a = document.createElement("p");
       a.textContent = error;
       mostrar_erros_usuario.appendChild(a);
+      erro_exite = true;
     }
 
     //Verifica se o campo de email é valido utilizando a expressão regular declarada anteriormente.
@@ -118,6 +121,7 @@ export class NovoLeadComponentComponent implements OnInit {
       var b = document.createElement("p");
       b.textContent = error;
       mostrar_erros_usuario.appendChild(b);
+      erro_exite = true;
     }
 
     //Caso todas sejam marcadas, marca novamente a checkbox de "marcar todas"
@@ -127,6 +131,7 @@ export class NovoLeadComponentComponent implements OnInit {
       var c = document.createElement("p");
       c.textContent = error;
       mostrar_erros_usuario.appendChild(c);
+      erro_exite = true;
     }
 
     //Pega o nome de usuário do localstorage.
@@ -135,14 +140,24 @@ export class NovoLeadComponentComponent implements OnInit {
     //Verifica se a empresa já foi cadastrado pelo tipo de retorno
     if (typeof empresa === 'string') {
       error = "• Empresa já cadastrada.\n";
+
+      var d = document.createElement("p");
+      d.textContent = error;
+      mostrar_erros_usuario.appendChild(d);
+      erro_exite = true;
     }
 
     //Verifica se o campo de numero de telefone somente tem números.
     if (/^\d+$/.test(telefone) == false){
       error = "• O campo telefone apenas aceita números.\n";
+
+      var e = document.createElement("p");
+      e.textContent = error;
+      mostrar_erros_usuario.appendChild(e);
+      erro_exite = true;
     }
 
-    else{
+    if (erro_exite == false){
 
       /*
           Apaga o conteúdo da <div> responsável pelos erros.
@@ -188,7 +203,6 @@ export class NovoLeadComponentComponent implements OnInit {
       }
 
       //Grava a empresa no armazenamento local.
-      alert("Empresa adicionada com sucesso!");
       localStorage.setItem(nome, JSON.stringify(empresa));
 
       //Adiciona a mensagem de sucesso ao campo de "login_sucesso".
