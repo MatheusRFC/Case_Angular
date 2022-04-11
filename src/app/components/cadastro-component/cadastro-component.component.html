@@ -31,9 +31,11 @@
           <p class="label-txt">DIGITE A CONFIRMAÇÃO DA SENHA</p>
           <input type="password" class="input" id = "senha_confirm" #senha_confirm>
           <div class="line-box">
-            <div class="line"></div>
           </div>
         </label>
+        <div class = "campo_erros" id = "campo_erros">
+
+        </div>
         <button type="button" (click)="coleta_Dados(nome_usuario.value, senha.value, senha_confirm.value)">CADASTRAR</button>
       </form>
 </body>
