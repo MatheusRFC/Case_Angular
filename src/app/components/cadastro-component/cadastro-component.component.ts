@@ -40,13 +40,17 @@ export class CadastroComponentComponent implements OnInit {
     //Pega o nome de usuário do localstorage.
     var users = localStorage.getItem(nome);
 
+    // Variáveis para exibição dos erros.
+    var error = '';
+    var error_existe = false;
+
     //Verifica se o usuário já foi cadastrado pelo tipo de retorno
     if (typeof users === 'string') {
 
       var a = document.createElement("p");
       a.textContent = "• Usuário já cadastrado.";
       mostrar_erros_usuario.appendChild(a);
-      
+      error_existe = true;
     }
 
     //Caso o usuário não esteja cadastrado, o script o cadastra.
@@ -60,12 +64,8 @@ export class CadastroComponentComponent implements OnInit {
         senha: senha,
       }
 
-      // Variáveis para exibição dos erros.
-      var error = '';
-      var error_existe = false;
-
       //Expressão regular responsável por definir os parametros da senha.
-      let regexp = new RegExp("^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*['/;:,.)(~|}{?@#$%^&+=*>!<_`-]).*$");
+      let regexp = new RegExp("^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*['/;:,.)(~|}{?@#$%^&+=*>!<_`-]).*$");
 
       // Verifica se o campo nome não está vazio e se ele possui pelo menos 4 caracteres.
       // Caso existam erros, os mesmos são adicionados a div de erros.
@@ -75,30 +75,33 @@ export class CadastroComponentComponent implements OnInit {
         var p = document.createElement("p");
         p.textContent = error;
         mostrar_erros_usuario.appendChild(p);
+        error_existe = true;
       }
 
       // Verifica se o campo de senha não esta vazio e se é igual a confirmação.
       // Caso existam erros, os mesmos são adicionados a div de erros.
       if (senha != senha_confirm || senha == "" || senha_confirm == ""){
-        error = "• As senhas tem que ser iguais e não podem ser vazias.";
+        error = "• A senha e a confirmação da senha devem ser iguais e não podem ser vazias.";
 
         var b = document.createElement("p");
         b.textContent = error;
         mostrar_erros_usuario.appendChild(b);
+        error_existe = true;
       } 
 
       // Verifica se a senha atente aos requisitos mínimos dispostos na expressão regular.
       // Caso existam erros, os mesmos são adicionados a div de erros.
       if (regexp.test(senha) == false){
-        error = "• As senhas devem conter pelo menos 8 caracteres, uma letra, um número e um caractere especial.";
+        error = "• A senha deve conter pelo menos 8 caracteres, uma letra, um número e um caractere especial.";
 
         var c = document.createElement("p");
         c.textContent = error;
         mostrar_erros_usuario.appendChild(c);
+        error_existe = true;
       }
 
       //Caso esteja tudo correto com as informações, exibe uma confirmação de usuário cadastrado.
-      else {
+      if (error_existe == false) {
 
           /*
           Apaga o conteúdo da <div> responsável pelos erros.
